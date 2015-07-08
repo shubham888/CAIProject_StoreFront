@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="MasterPage" %>
+
+<link rel="stylesheet" type="text/css" href="StyleSheet.css" />
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Master_Form" runat="server">
+       <div id="header" style="background-color:grey">
+	    <div id="banner">
+	    <div id="welcome">
+	      <h1>Welcome to STOREFRONT</h1>
+	        </div><!--close welcome-->
+	        <div id="menubar">
+                <ul id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ourwork.html">Shop</a></li>
+                <li><a href="testimonials.html">Deal Of the Day</a></li>
+                <li><a href="projects.html">My Profile</a></li>
+                <li class="current"><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div><!--close menubar-->	  
+	  </div>
+    </div>
+        <table >
+            <tr>
+            <td rowspan="100" style="width:10%;text-align:left">
+            <ul>
+                <li><a href="index.html" style="color:black">ProductsAdmin</a></li>
+                <li><a href="ourwork.html" style="color:black">ProductAdminDetails</a></li>
+                <li><a href="testimonials.html" style="color:black">CustomersAdmin</a></li>
+                <li><a href="projects.html" style="color:black">CustomerAdminDetails</a></li>
+                </ul>
+            </td>
+                </tr>
+            
+    <tr><td rowspan="100" style="text-align:center;width:90%">
+        <asp:ContentPlaceHolder id="Master_CPHolder" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        </td>
+    </tr>
+    </table>
+    </form>
+</body>
+</html>
