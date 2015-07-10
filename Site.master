@@ -32,10 +32,10 @@
             <tr>
             <td rowspan="100" style="width:10%;text-align:left">
             <ul>
-                <li><a href="index.html" style="color:black">ProductsAdmin</a></li>
-                <li><a href="ourwork.html" style="color:black">ProductAdminDetails</a></li>
-                <li><a href="testimonials.html" style="color:black">CustomersAdmin</a></li>
-                <li><a href="projects.html" style="color:black">CustomerAdminDetails</a></li>
+                <li><a href="ProductsAdmin.aspx" style="color:black">ProductsAdmin</a></li>
+                <%--<li><a href="ourwork.ht" style="color:black">ProductAdminDetails</a></li>--%>
+                <li><a href="CustomerAdmin.aspx" style="color:black">CustomersAdmin</a></li>
+                <%--<li><a href="projects.html" style="color:black">CustomerAdminDetails</a></li>--%>
                 </ul>
             </td>
                 </tr>

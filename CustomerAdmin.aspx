@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Master_CPHolder" Runat="Server">
     <div>
-    <asp:GridView PageSize="50" AllowPaging="true" ID="Cust_Admin_GridView" AutoGenerateColumns="false" runat="server" Width="100%" style="color:black;text-align:center" OnRowEditing ="grid_rowedit" OnRowUpdating="grid_rowupdating" OnRowDeleting="grid_rowdeleted">
+    <asp:GridView PageSize="50" AllowPaging="true" ID="Cust_Admin_GridView" AutoGenerateColumns="false" runat="server" Width="100%" style="color:black;text-align:center" OnRowEditing ="grid_rowedit"  OnRowDeleting="grid_rowdeleted">
     <Columns>
         <%--<asp:CommandField ShowEditButton="true" ControlStyle-ForeColor="Gray" ItemStyle-Width="5%" />--%>
         <ASP:HYPERLINKFIELD ControlStyle-ForeColor="Gray" DataNavigateUrlFields="UserID" text="Edit" datanavigateurlformatstring="CustomerAdminDetails.aspx?UserId={0}"></ASP:HYPERLINKFIELD>
