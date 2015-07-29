@@ -23,7 +23,7 @@
         </tr>
     <tr>
             <td style="width:100%;align-items:center;" >
-    <asp:GridView PageSize="50" AllowPaging="true" ID="Prod_Admin_GridView" AutoGenerateColumns="true" runat="server" Width="100%" style="color:black;text-align:center" >
+    <asp:GridView PageSize="50" AllowPaging="true" ID="Prod_Admin_GridView" AutoGenerateColumns="true" runat="server" Width="100%" style="color:black;text-align:center" AllowSorting="true" OnSorting="GV_sort" >
     <Columns>
         <%--<asp:CommandField ShowEditButton="true" ControlStyle-ForeColor="Gray" ItemStyle-Width="5%" />--%>
         <ASP:HYPERLINKFIELD ControlStyle-ForeColor="Gray" DataNavigateUrlFields= "ProductID" text="Edit" datanavigateurlformatstring="ProductAdminDetails.aspx?ProductID={0}"></ASP:HYPERLINKFIELD>
@@ -37,7 +37,7 @@
         </tr>
     <tr>
        <td style="padding-top:50px;padding-left:25%">
-        <asp:DetailsView ID="ProdAdmin_insertDV" runat="server" Height="101px" Width="334px" AutoGenerateRows="False" AutoGenerateInsertButton="true" style="color:black" DefaultMode="Insert" OnItemInserting="DV_ItemInsert"  >
+        <asp:DetailsView ID="ProdAdmin_insertDV" runat="server" Height="101px" Width="334px" AutoGenerateRows="False" OnModeChanging="DV_ModeChange" AutoGenerateInsertButton="true" style="color:black" DefaultMode="Insert" OnItemInserting="DV_ItemInsert" OnPageIndexChanging="ProdAdmin_insertDV_PageIndexChanging"  >
             <Fields>
                 
                 <asp:BoundField DataField="ProductName" HeaderText="ProductName" ItemStyle-Width="30px" />

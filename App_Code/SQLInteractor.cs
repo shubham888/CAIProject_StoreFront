@@ -34,6 +34,7 @@ public static class SQLInteractor
 
     public static SqlDataSource DataSourceInsert(string sp, string[,] param)
     {
+        float f;
         ds = new SqlDataSource();
         if (cns.State != ConnectionState.Open)
             cns.Open();
@@ -45,6 +46,8 @@ public static class SQLInteractor
         {
             ds.InsertParameters.Add(param[0, i], param[1, i]);
             ds.InsertParameters[param[0, i]].DefaultValue = param[1, i];
+            if(float.TryParse(param[1, i],out f))
+                ds.InsertParameters[param[0, i]].Type = System.TypeCode.Double;
         }
         ds.Insert();
         return ds;

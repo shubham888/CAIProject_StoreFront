@@ -4,14 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Master_CPHolder" Runat="Server">
     <div>
-    <asp:GridView PageSize="50" AllowPaging="true" ID="Cust_Admin_GridView" AutoGenerateColumns="false" runat="server" Width="100%" style="color:black;text-align:center" OnRowEditing ="grid_rowedit"  OnRowDeleting="grid_rowdeleted">
+    <asp:GridView AllowSorting="true" PageSize="50" AllowPaging="true" ID="Cust_Admin_GridView" AutoGenerateColumns="false" runat="server" Width="100%" style="color:black;text-align:center" OnRowEditing ="grid_rowedit"  OnRowDeleting="grid_rowdeleted" OnSorting="GV_sorting">
     <Columns>
-        <%--<asp:CommandField ShowEditButton="true" ControlStyle-ForeColor="Gray" ItemStyle-Width="5%" />--%>
         <ASP:HYPERLINKFIELD ControlStyle-ForeColor="Gray" DataNavigateUrlFields="UserID" text="Edit" datanavigateurlformatstring="CustomerAdminDetails.aspx?UserId={0}"></ASP:HYPERLINKFIELD>
         <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="Gray" ItemStyle-Width="5%" />
-        <asp:BoundField DataField="UserID" HeaderText="UserID" ItemStyle-Width="30%" ReadOnly="true" />
-        <asp:BoundField DataField="UserName" HeaderText="UserName" ItemStyle-Width="30%" />
-        <asp:BoundField DataField="EmailAddress" HeaderText="EmailAddress" ItemStyle-Width="30%"  />
+        <asp:BoundField DataField="UserID" HeaderText="UserID" ItemStyle-Width="30%" ReadOnly="true"  SortExpression="UserID" HeaderStyle-ForeColor="Black"/>
+        <asp:BoundField DataField="UserName" HeaderText="UserName" ItemStyle-Width="30%"  SortExpression="UserName" HeaderStyle-ForeColor="Black"/>
+        <asp:BoundField DataField="EmailAddress" HeaderText="EmailAddress" ItemStyle-Width="30%" SortExpression="EmailAddress" HeaderStyle-ForeColor="Black"/>
         </Columns>
     </asp:GridView>
     <asp:sqldatasource id="ds" runat="server"> 
@@ -26,7 +25,7 @@
         <table style="width:100%">
         <tr>
             <td style="padding-top:50px;padding-left:25%">
-        <asp:DetailsView ID="CustAdmin_DetailsView" runat="server" Height="101px" Width="334px" AutoGenerateRows="False" AutoGenerateInsertButton="true" style="color:black" DefaultMode="Insert" OnItemInserting="DV_ItemInsert" OnPageIndexChanging="CustAdmin_DetailsView_PageIndexChanging" >
+        <asp:DetailsView ID="CustAdmin_DetailsView" runat="server" Height="101px" Width="334px" OnModeChanging="DV_ModeChange" AutoGenerateRows="False" AutoGenerateInsertButton="true" style="color:black;" DefaultMode="Insert" OnItemInserting="DV_ItemInsert" OnPageIndexChanging="CustAdmin_DetailsView_PageIndexChanging" >
             <Fields>
                 <asp:BoundField DataField="UserName" HeaderText="UserName" ItemStyle-Width="100px" />
                 <asp:BoundField DataField="EmailAddress" HeaderText="EmailAddress" ItemStyle-Width="30px"  />

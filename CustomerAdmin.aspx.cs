@@ -10,6 +10,10 @@ using System.Data;
 
 public partial class CustomerAdmin : System.Web.UI.Page
 {
+    SqlDataSource ds_gv;
+    private const string ASCENDING = " ASC";
+    private const string DESCENDING = " DESC";
+
     //SqlConnection cns = new SqlConnection(ConfigurationManager.ConnectionStrings["cns"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,18 +25,65 @@ public partial class CustomerAdmin : System.Web.UI.Page
         }
     }
 
+    public SortDirection GridViewSortDirection
+    {
+        get
+        {
+            if (ViewState["sortDirection"] == null)
+                ViewState["sortDirection"] = SortDirection.Ascending;
+
+            return (SortDirection)ViewState["sortDirection"];
+        }
+        set { ViewState["sortDirection"] = value; }
+    }
+
+    protected void GV_sorting(object sender, GridViewSortEventArgs e)
+    {
+        string sortExpression = e.SortExpression;
+
+        if (GridViewSortDirection == SortDirection.Ascending)
+        {
+            GridViewSortDirection = SortDirection.Descending;
+            SortGridView(sortExpression, DESCENDING);
+        }
+        else
+        {
+            GridViewSortDirection = SortDirection.Ascending;
+            SortGridView(sortExpression, ASCENDING);
+        }
+
+    }
+
+    
+    private void SortGridView(string sortExpression, string direction)
+    {
+        //  You can cache the DataTable for improving performance
+        string[,] p = new string[0, 0];
+        ds_gv = SQLInteractor.DataSourceSelect("spGetUsers", p);
+        DataView dv = (DataView)(ds_gv.Select(DataSourceSelectArguments.Empty));
+        DataTable dt = dv.ToTable();
+        dv.Sort = sortExpression + direction;
+
+        Cust_Admin_GridView.DataSource = dv;
+        Cust_Admin_GridView.DataBind();
+    }
+
+
+
     protected void Page_Init(object sender, EventArgs e)
     {
         
     }
 
+
     protected void gridview_bind()
     {
         string[,] p = new string[0, 0];
         string procname = "spGetUsers";
-        ds = SQLInteractor.DataSourceSelect(procname, p);
+        ds_gv = SQLInteractor.DataSourceSelect(procname, p);
+       
 
-        Cust_Admin_GridView.DataSource = ds;
+        Cust_Admin_GridView.DataSource = ds_gv;
         Cust_Admin_GridView.DataBind();
         
     }
@@ -123,5 +174,11 @@ public partial class CustomerAdmin : System.Web.UI.Page
     protected void Cust_Admin_GridView_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void DV_ModeChange(object sender, DetailsViewModeEventArgs e)
+    {
+        ((TextBox)((DetailsView)sender).Rows[0].Cells[1].Controls[0]).Text = string.Empty;
+        ((TextBox)((DetailsView)sender).Rows[1].Cells[1].Controls[0]).Text = string.Empty;
     }
 }

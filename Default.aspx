@@ -22,7 +22,7 @@
                 <h1 style="color:black">Random Content 2</h1>
             </td>
         </tr>
-        <tr style="background-color:lightgray;height:500">
+        <tr style="background-color:lightgray; height:300px">
             <td style="text-align:center">
                 Random Content 3
             </td>
